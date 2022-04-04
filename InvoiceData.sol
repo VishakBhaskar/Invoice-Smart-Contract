@@ -36,13 +36,6 @@ contract InvoiceData {
             sellerAddress : _sellerAddress});
     }
 
-    function pay(uint _invoiceNumber) public payable {
-        require(allInvoices[_invoiceNumber].paymentStatus == false , "Invoice already paid");
-        uint invoiceAmount = allInvoices[_invoiceNumber].amount;
-        address payable _toAddress = allInvoices[_invoiceNumber].sellerAddress;
-        _toAddress.transfer(invoiceAmount);
-        allInvoices[_invoiceNumber].paymentStatus = true;
-    }
 
     function getPaymentStatus(uint _invoiceNumber) public view returns(string memory) {
         if(allInvoices[_invoiceNumber].paymentStatus == true) {
